@@ -22,11 +22,6 @@ public class TennisGame {
 
         return printer.getResult();
     }
-
-    private boolean isGameFinished(Score score) {
-        return score.isPlayerAWinner() || score.isPlayerBWinner() || score.checkDeuceCondition();
-    }
-
     private String formatScore(int score) {
         return switch (score) {
             case 0 -> "0";
