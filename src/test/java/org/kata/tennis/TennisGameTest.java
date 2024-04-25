@@ -24,7 +24,16 @@ class TennisGameTest {
                         "Player A : 30 / Player B : 30\n" +
                         "Player A : 40 / Player B : 30\n" +
                         "Player A : 40 / Player B : 40\n" +
-                        "Player A : Deuce / Player B : Deuce")
+                        "Player A : Deuce / Player B : Deuce"),
+                Arguments.of("ABABABABB", "Player A : 15 / Player B : 0\n" +
+                        "Player A : 15 / Player B : 15\n" +
+                        "Player A : 30 / Player B : 15\n" +
+                        "Player A : 30 / Player B : 30\n" +
+                        "Player A : 40 / Player B : 30\n" +
+                        "Player A : 40 / Player B : 40\n" +
+                        "Player A : Deuce / Player B : Deuce\n"+
+                        "Player B wins the game")
+
         );
     }
 

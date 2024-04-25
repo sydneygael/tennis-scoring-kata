@@ -12,7 +12,7 @@ public class TennisGame {
                 score = score.incrementPlayerBScore();
             }
 
-            if (isGameFinished(score)) {
+            if (score.isSomeoneWinner() || score.isSomeoneAdvantaged()) {
                 printer.update(score);
                 break;
             } else {

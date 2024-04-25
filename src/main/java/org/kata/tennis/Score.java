@@ -1,4 +1,5 @@
 package org.kata.tennis;
+
 public record Score(int playerAScore, int playerBScore) {
 
     /**
@@ -33,6 +34,26 @@ public record Score(int playerAScore, int playerBScore) {
      */
     public boolean checkDeuceCondition() {
         return playerAScore >= 3 && playerAScore == playerBScore;
+    }
+
+    public boolean isPlayerAAdvantaged() {
+        return (playerAScore >= 4 && playerBScore >= 4 && playerAScore == playerBScore + 1);
+    }
+
+    public boolean isPlayerBAdvantaged() {
+        return (playerAScore >= 4 && playerBScore >= 4 && playerBScore == playerAScore + 1);
+    }
+
+    public boolean isSomeoneWinner() {
+        return isPlayerAWinner() || isPlayerBWinner();
+    }
+
+    public boolean isSomeoneAdvantaged() {
+        return isPlayerAAdvantaged() || isPlayerBAdvantaged();
+    }
+
+    public String getPlayerWithHighestScore() {
+        return (playerAScore > playerBScore) ? "A" : "B";
     }
 }
 

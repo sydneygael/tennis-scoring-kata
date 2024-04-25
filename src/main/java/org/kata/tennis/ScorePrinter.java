@@ -6,24 +6,31 @@ package org.kata.tennis;
 
 public class ScorePrinter {
     private final StringBuilder result = new StringBuilder();
+    private boolean isDuced = false;
 
     public void update(Score score) {
-        if (score.checkDeuceCondition()) {
-            lineScore(score);
-            result.append("Player A : Deuce / Player B : Deuce\n");
-        } else if (score.isPlayerAWinner()) {
-            result.append("Player A wins the game\n");
-        } else if (score.isPlayerBWinner()) {
-            result.append("Player B wins the game\n");
-        } else {
-            lineScore(score);
+        if (score.isSomeoneAdvantaged()) {
+            result.append(String.format("Player %s wins the game\n", score.getPlayerWithHighestScore()));
         }
+
+        if (!isDuced) {
+            if (score.checkDeuceCondition()) {
+                lineScore(score);
+                result.append("Player A : Deuce / Player B : Deuce\n");
+                isDuced = true;
+            } else if (score.isPlayerAWinner()) {
+                result.append("Player A wins the game\n");
+            } else if (score.isPlayerBWinner()) {
+                result.append("Player B wins the game\n");
+            } else {
+                lineScore(score);
+            }
+        }
+
     }
 
     public String getResult() {
-        var r = result.toString().trim();
-        result.setLength(0);
-        return r;
+        return result.toString().trim();
     }
 
     private void lineScore(Score score) {
