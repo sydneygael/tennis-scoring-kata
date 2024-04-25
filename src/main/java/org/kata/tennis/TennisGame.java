@@ -2,7 +2,7 @@ package org.kata.tennis;
 
 public class TennisGame {
     public String calculateScore(String input) {
-        var printer = new ScorePrinter();
+        var printer = new ConsoleScorePrinter();
         var score = new Score(0, 0);
 
         for (char c : input.toCharArray()) {
