@@ -50,13 +50,13 @@ class TennisGameTest {
     @ParameterizedTest
     @MethodSource
     void testCalculateScore(String input, String expectedOutput) {
-        TennisGame tennisGame = new TennisGame();
+        var tennisGame = new TennisGame();
         assertEquals(expectedOutput, tennisGame.calculateScore(input));
     }
 
     @Test
     void calculateScore_WithInvalidInput_ShouldThrowIllegalArgumentException() {
-        TennisGame tennisGame = new TennisGame();
+        var tennisGame = new TennisGame();
         assertThrows(IllegalArgumentException.class, () -> tennisGame.calculateScore("ABCDE"));
     }
 }
