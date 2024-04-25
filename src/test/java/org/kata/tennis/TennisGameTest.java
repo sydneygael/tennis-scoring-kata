@@ -10,6 +10,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TennisGameTest {
 
+    /**
+     *  On test :
+     *  CAS 1 : ABABAA -> Joueur 1 gagne
+     *  CAS 2 : Deuce
+     *  CAS 3 : Joueur 3 gagne avec un Deuce
+     * @return
+     */
+
     private static Stream<Arguments> testCalculateScore() {
         return Stream.of(
                 Arguments.of("ABABAA", "Player A : 15 / Player B : 0\n" +
