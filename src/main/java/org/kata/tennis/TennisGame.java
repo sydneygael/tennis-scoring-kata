@@ -2,7 +2,7 @@ package org.kata.tennis;
 
 public class TennisGame {
     public String calculateScore(String input) {
-        var result = new StringBuilder();
+        var result = new ScorePrinter();
         var score = new Score(0, 0);
 
         for (char c : input.toCharArray()) {
@@ -12,27 +12,19 @@ public class TennisGame {
                 score = score.incrementPlayerBScore();
             }
 
-            if (score.isPlayerAWinner()) {
-                result.append("Player A wins the game\n");
-                break;
-            } else if (score.isPlayerBWinner()) {
-                result.append("Player B wins the game\n");
-                break;
-            } else if (score.checkDeuceCondition()) {
-                lineScore(result, score.playerAScore(), score.playerBScore());
-                result.append("Player A : Deuce / Player B : Deuce\n");
+            if (isGameFinished(score)) {
+                result.update(score);
                 break;
             } else {
-                lineScore(result, score.playerAScore(), score.playerBScore());
+                result.update(score);
             }
         }
 
-        return result.toString().trim();
+        return result.getResult();
     }
 
-    private void lineScore(StringBuilder result, int playerAScore, int playerBScore) {
-        result.append("Player A : ").append(formatScore(playerAScore))
-                .append(" / Player B : ").append(formatScore(playerBScore)).append("\n");
+    private static boolean isGameFinished(Score score) {
+        return score.isPlayerAWinner() || score.isPlayerBWinner() || score.checkDeuceCondition();
     }
 
     private String formatScore(int score) {

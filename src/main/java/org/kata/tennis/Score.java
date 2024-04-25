@@ -1,6 +1,10 @@
 package org.kata.tennis;
 public record Score(int playerAScore, int playerBScore) {
 
+    /**
+     * constructeur canonique
+     */
+
     public Score {
         if (playerAScore < 0 || playerBScore < 0) {
             throw new IllegalArgumentException("Scores cannot be negative");
