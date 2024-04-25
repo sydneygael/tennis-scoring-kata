@@ -6,10 +6,12 @@ public class TennisGame {
         var score = new Score(0, 0);
 
         for (char c : input.toCharArray()) {
-            if (c == 'A') {
-                score = score.incrementPlayerAScore();
-            } else if (c == 'B') {
-                score = score.incrementPlayerBScore();
+
+            // Java 17
+            switch (c) {
+                case 'A' -> score = score.incrementPlayerAScore();
+                case 'B' -> score = score.incrementPlayerBScore();
+                default -> throw new IllegalArgumentException("Only A & B are permitted");
             }
 
             if (score.isSomeoneWinner() || score.isSomeoneAdvantaged()) {

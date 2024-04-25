@@ -1,5 +1,6 @@
 package org.kata.tennis;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -7,6 +8,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class TennisGameTest {
 
@@ -50,5 +52,11 @@ class TennisGameTest {
     void testCalculateScore(String input, String expectedOutput) {
         TennisGame tennisGame = new TennisGame();
         assertEquals(expectedOutput, tennisGame.calculateScore(input));
+    }
+
+    @Test
+    void calculateScore_WithInvalidInput_ShouldThrowIllegalArgumentException() {
+        TennisGame tennisGame = new TennisGame();
+        assertThrows(IllegalArgumentException.class, () -> tennisGame.calculateScore("ABCDE"));
     }
 }
