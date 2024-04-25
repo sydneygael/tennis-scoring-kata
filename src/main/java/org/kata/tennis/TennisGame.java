@@ -20,15 +20,22 @@ public class TennisGame {
                 result.append("Player B wins the game\n");
                 break;
             } else if (checkDeuceCondition(playerAScore, playerBScore)) {
+                lineScore(result, playerAScore, playerBScore);
                 result.append("Player A : Deuce / Player B : Deuce\n");
+                break;
             } else {
-                result.append("Player A : ").append(formatScore(playerAScore))
-                        .append(" / Player B : ").append(formatScore(playerBScore)).append("\n");
+                lineScore(result, playerAScore, playerBScore);
             }
         }
 
         return result.toString().trim();
     }
+
+    private void lineScore(StringBuilder result, int playerAScore, int playerBScore) {
+        result.append("Player A : ").append(formatScore(playerAScore))
+                .append(" / Player B : ").append(formatScore(playerBScore)).append("\n");
+    }
+
 
     /**
      * vérifie si un joueur a gagné la partie en se basant sur ses points par rapport à ceux de son adversaire.
