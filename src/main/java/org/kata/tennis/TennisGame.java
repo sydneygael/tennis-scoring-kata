@@ -2,7 +2,7 @@ package org.kata.tennis;
 
 public class TennisGame {
     public String calculateScore(String input) {
-        var result = new ScorePrinter();
+        var printer = new ScorePrinter();
         var score = new Score(0, 0);
 
         for (char c : input.toCharArray()) {
@@ -13,17 +13,17 @@ public class TennisGame {
             }
 
             if (isGameFinished(score)) {
-                result.update(score);
+                printer.update(score);
                 break;
             } else {
-                result.update(score);
+                printer.update(score);
             }
         }
 
-        return result.getResult();
+        return printer.getResult();
     }
 
-    private static boolean isGameFinished(Score score) {
+    private boolean isGameFinished(Score score) {
         return score.isPlayerAWinner() || score.isPlayerBWinner() || score.checkDeuceCondition();
     }
 
