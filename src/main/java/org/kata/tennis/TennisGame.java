@@ -2,7 +2,9 @@ package org.kata.tennis;
 
 public class TennisGame {
     public String calculateScore(String input) {
-        var printer = new ConsoleScorePrinter();
+
+        var scoreRepository = new ScoreRepository();
+        var printer = new ConsoleScorePrinter(scoreRepository);
         var score = new Score(0, 0);
 
         for (char c : input.toCharArray()) {
@@ -14,15 +16,14 @@ public class TennisGame {
                 default -> throw new IllegalArgumentException("Only A & B are permitted");
             }
 
+            scoreRepository.updateScore(score);
+
             if (score.isSomeoneWinner() || score.isSomeoneAdvantaged()) {
-                printer.update(score);
                 break;
-            } else {
-                printer.update(score);
             }
         }
 
-        return printer.getResult();
+        return printer.printScoreHistory();
     }
 }
 
