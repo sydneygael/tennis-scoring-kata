@@ -1,9 +1,11 @@
 package org.kata.tennis;
 
 public class TennisGame {
+
+    private final ScoreRepository scoreRepository = new ScoreRepository();
+
     public String calculateScore(String input) {
 
-        var scoreRepository = new ScoreRepository();
         var printer = new ConsoleScorePrinter(scoreRepository);
         var score = new Score(0, 0);
 
